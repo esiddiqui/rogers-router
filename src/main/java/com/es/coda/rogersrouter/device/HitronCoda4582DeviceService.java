@@ -27,10 +27,18 @@ public class HitronCoda4582DeviceService implements DeviceService {
     private Scrapper scrapper = new Scrapper();
 
 
-    public Device findByName(String name) {
+    public List<Device> findByName(String name) {
         return this.list().stream()
                 .filter(d->d.getName().equalsIgnoreCase(name))
-                .findFirst().orElse(null);
+                .collect(Collectors.toList());
+    }
+
+
+    public Device findByIp(String ipAddr) {
+        return this.list().stream()
+                .filter(d->d.getIpAddress().equalsIgnoreCase(ipAddr))
+                .findFirst()
+                .orElse(null);
     }
 
     public List<Device> findAll() {
@@ -61,7 +69,7 @@ public class HitronCoda4582DeviceService implements DeviceService {
 
                 //access control status
                 List<DomElement> buttons = page.getElementsByName("blockType");
-                DomElement ele = buttons.stream().filter(btn->btn.getAttribute("class").indexOf("btn-primar")!=-1).findFirst().get();
+                DomElement ele = buttons.stream().filter(btn->btn.getAttribute("class").indexOf("btn-primary")!=-1).findFirst().get();
                 String value = ((HtmlButton)ele).getAttribute("value");
                 int accessControlValue=0;
                 if (value.equalsIgnoreCase("Block Listed"))
@@ -91,7 +99,6 @@ public class HitronCoda4582DeviceService implements DeviceService {
                     }
                 });
 
-
                //access controlled devices
                 String xpathDisabled = "//*[@id='macFilterMain']/div[4]/table";
                 table  = (HtmlTable) page.getFirstByXPath(xpathDisabled);
@@ -112,8 +119,6 @@ public class HitronCoda4582DeviceService implements DeviceService {
                         devices.add(device);
                     }
                 });
-
-
 
         } catch (IOException ex) {
             System.err.println(ex.getMessage());

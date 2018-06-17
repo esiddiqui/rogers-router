@@ -4,7 +4,8 @@ import java.util.List;
 
 public interface DeviceService {
 
-    Device findByName(String name);
+    List<Device>  findByName(String name);
+    Device findByIp(String ipAddr);
     List<Device> findAll();
     boolean disableDevice(String name);
 

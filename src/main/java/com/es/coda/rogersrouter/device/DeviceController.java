@@ -21,7 +21,7 @@ public class DeviceController {
 
 
     @GetMapping("/{name}")
-    public Device get(@PathVariable("name") String name) {
+    public List<Device> get(@PathVariable("name") String name) {
         System.out.println("GET /v1/devices/"+name);
         return this.deviceService.findByName(name);
     }
