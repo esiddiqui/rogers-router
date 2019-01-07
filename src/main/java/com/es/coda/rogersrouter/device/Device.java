@@ -9,8 +9,9 @@ public class Device {
     private boolean allowed;
     private String type;
     private String networkInterface;
-    private String managedDays;
-    private String managedHours;
+    //private String managedDays;
+    //private String managedHours;
+    private DeviceAccessRestriction restrictions;
 
     public Device(String name, String macAddress, String ipAddress, boolean allowed) {
         this.name = name;
@@ -69,21 +70,21 @@ public class Device {
         this.managed = managed;
     }
 
-    public String getManagedDays() {
-        return managedDays;
-    }
-
-    public void setManagedDays(String managedDays) {
-        this.managedDays = managedDays;
-    }
-
-    public String getManagedHours() {
-        return managedHours;
-    }
-
-    public void setManagedHours(String managedHours) {
-        this.managedHours = managedHours;
-    }
+//    public String getManagedDays() {
+//        return managedDays;
+//    }
+//
+//    public void setManagedDays(String managedDays) {
+//        this.managedDays = managedDays;
+//    }
+//
+//    public String getManagedHours() {
+//        return managedHours;
+//    }
+//
+//    public void setManagedHours(String managedHours) {
+//        this.managedHours = managedHours;
+//    }
 
     public String getType() {
         return type;
@@ -99,5 +100,13 @@ public class Device {
 
     public void setNetworkInterface(String networkInterface) {
         this.networkInterface = networkInterface;
+    }
+
+    public DeviceAccessRestriction getRestrictions() {
+        return restrictions;
+    }
+
+    public void setRestrictions(DeviceAccessRestriction restrictions) {
+        this.restrictions = restrictions;
     }
 }
